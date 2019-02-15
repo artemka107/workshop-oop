@@ -1,4 +1,3 @@
-import 'source-map-support/register';
-import half from './half';
+import createGeo from './geo';
 
-export default half;
+export default createGeo;
