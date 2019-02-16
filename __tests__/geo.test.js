@@ -1,4 +1,4 @@
-import createGeo from '../src';
+import Geo from '../src';
 
 test('getGeo', async () => {
   const expected = 'expected result';
@@ -7,9 +7,9 @@ test('getGeo', async () => {
     get: jest.fn().mockResolvedValue({ data: expected }),
   };
 
-  const getGeo = createGeo(mockHttpModule);
+  const geo = new Geo(mockHttpModule);
 
-  const result = await getGeo('some test ip');
+  const result = await geo.get('some test ip');
   expect(result).toBe(expected);
 });
 
@@ -18,7 +18,7 @@ test('getGeo with errors', async () => {
     get: jest.fn().mockResolvedValue({ data: { status: 'fail' } }),
   };
 
-  const getGeo = createGeo(mockHttpModule);
+  const geo = new Geo(mockHttpModule);
 
-  await expect(getGeo('some test ip')).rejects.toThrow();
+  await expect(geo.get('some test ip')).rejects.toThrow();
 });
